@@ -46,7 +46,7 @@ const AdminLogin = () => {
             setErrors(newErrors);
         } else {
             try {
-                const response = await fetch('https://patient-management-server-1.onrender.com/api/admins/login', {
+                const response = await fetch('https://patient-management-server.onrender.com/api/admins/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
