@@ -79,7 +79,7 @@ const AddDoctor = () => {
     const token = localStorage.getItem('adminToken');
     
     try {
-      const response = await axios.post("http://localhost:5000/api/doctors/register/doctor", formData, {
+      const response = await axios.post("https://patient-management-server.onrender.com/api/doctors/register/doctor", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
