@@ -80,7 +80,7 @@ const AdminSignup = () => {
             });
 
             try {
-                const response = await fetch('http://localhost:5000/api/admins/register', {
+                const response = await fetch('https://patient-management-server-1.onrender.com/api/admins/register', {
                     method: 'POST',
                     body: formDataToSend,
                 });
