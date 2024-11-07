@@ -86,7 +86,7 @@ const AddDoctor = () => {
         },
       });
       toast.success("Doctor added successfully!");
-      navigate('/dashboard');
+      navigate('/doctormanagement');
     } catch (error) {
       const errorMsg = error.response?.data?.msg || "Failed to add doctor. Please try again.";
       toast.error(errorMsg);
