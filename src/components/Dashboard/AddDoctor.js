@@ -33,7 +33,7 @@ const AddDoctor = () => {
     hospitalAddress: '',
     onlineConsultationRate: '',
     password: '',
-    confirmPassword: '', 
+    confirmPassword: '',
     profileImage: null,
     signatureImage: null,
   });
@@ -77,7 +77,7 @@ const AddDoctor = () => {
     });
 
     const token = localStorage.getItem('adminToken');
-    
+
     try {
       const response = await axios.post("https://patient-management-server.onrender.com/api/doctors/register/doctor", formData, {
         headers: {
@@ -151,45 +151,72 @@ const AddDoctor = () => {
                   {[
                     { label: 'Doctor Name', name: 'name' },
                     { label: 'Qualification', name: 'qualification' },
-                    { label: 'Gender', name: 'gender' },
+                    {
+                      label: 'Gender',
+                      name: 'gender',
+                      type: 'select',
+                      options: ['Male', 'Female', 'Other']
+                    },
                     { label: 'Experience', name: 'experience' },
-                    { label: 'Checkup Time', name: 'checkUpTime' },
-                    { label: 'Work On', name: 'workOn' },
+                    { label: 'Checkup Time', name: 'checkUpTime', type: 'time' },
+                    { label: 'Work On', 
+                      name: 'workOn' ,
+                      type: 'select',
+                      options: ['Online', 'Onsite', 'Both']
+                    },
                     { label: 'Specialty Type', name: 'specialtyType' },
-                    // { label: 'Working Time', name: 'workingTime' },
-                    // { label: 'Break Time', name: 'breakTime' },
-                    { label: 'Age', name: 'age' },
-                    { label: 'Phone Number', name: 'phoneNumber' },
-                    { label: 'Email', name: 'email' },
+                    
+                    { label: 'Working Time', name: 'workingTime' },
+                    { label: 'Break Time', name: 'breakTime' },
+                    
+                    { label: 'Age', type: 'number', name: 'age' },
+                    { label: 'Phone Number', type: 'number', name: 'phoneNumber' },
+                    { label: 'Email', type: 'email', name: 'email' },
                     { label: 'City', name: 'city' },
                     { label: 'State', name: 'state' },
                     { label: 'Country', name: 'country' },
                     { label: 'Address', name: 'doctorAddress' },
-                    { label: 'Zip Code', name: 'zipCode' },
+                    { label: 'Zip Code', type: 'number', name: 'zipCode' },
                     { label: 'Description', name: 'description' },
                     { label: 'Hospital', name: 'hospital' },
                     { label: 'Current Hospital', name: 'currentHospital' },
                     { label: 'Hospital Website Link', name: 'hospitalWebsiteLink' },
-                    { label: 'Emergency Phone Number', name: 'emergencyPhoneNumber' },
+                    { label: 'Emergency Phone Number', type: 'number', name: 'emergencyPhoneNumber' },
                     { label: 'Hospital Address', name: 'hospitalAddress' },
-                    { label: 'Online Consultation Rate', name: 'onlineConsultationRate' },
+                    { label: 'Online Consultation Rate', type: 'number', name: 'onlineConsultationRate' },
                     { label: 'Password', name: 'password', type: 'password' },
-                    { label: 'confirmPassword', name: 'confirmPassword', type: 'confirmPassword' },
+                    { label: 'Confirm Password', name: 'confirmPassword', type: 'password' }
                   ].map((field) => (
                     <div key={field.name}>
                       <label className="block mb-1 text-sm font-medium">{field.label}</label>
-                      <input
-                        type={field.type || 'text'}
-                        name={field.name}
-                        value={doctorData[field.name]}
-                        onChange={handleChange}
-                        className="w-full px-3 py-2 border rounded-lg"
-                        placeholder={`Enter ${field.label}`}
-                        required
-                      />
+                      {field.type === 'select' ? (
+                        <select
+                          name={field.name}
+                          value={doctorData[field.name]}
+                          onChange={handleChange}
+                          className="w-full px-3 py-2 border rounded-lg"
+                          required
+                        >
+                          <option value="">Select {field.label}</option>
+                          {field.options.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      ) : (
+                        <input
+                          type={field.type || 'text'}
+                          name={field.name}
+                          value={doctorData[field.name]}
+                          onChange={handleChange}
+                          className="w-full px-3 py-2 border rounded-lg"
+                          placeholder={`Enter ${field.label}`}
+                          required
+                        />
+                      )}
                     </div>
                   ))}
                 </div>
+
               </div>
               <div className="flex justify-end">
                 <button
