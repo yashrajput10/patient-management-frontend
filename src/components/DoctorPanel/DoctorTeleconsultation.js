@@ -95,10 +95,10 @@ const DoctorTeleconsultation = () => {
                             {["today", "upcoming", "previous", "cancel"].map((tab) => (
                                 <button
                                     key={tab}
-                                    className={`px-6 py-2 text-lg font-semibold transition duration-300 rounded-md ${activeTab === tab
-                                        ? "text-gray-400"
-                                        : "bg-white hover:bg-blue-100"
-                                        }`}
+                                    className={`px-6 py-2 text-lg font-semibold transition duration-300 ${activeTab === tab
+                                        ? "text-[#0EABEB] border-b-4 border-[#0EABEB]"
+                                        : "text-gray-600 border-b-4 border-transparent"
+                                    }`}
                                     onClick={() => setActiveTab(tab)}
                                 >
                                     {tab.charAt(0).toUpperCase() + tab.slice(1)} Appointments
